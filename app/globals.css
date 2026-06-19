@@ -1,0 +1,329 @@
+:root {
+  --ink: #1c1814;
+  --paper: #f4ecd8;
+  --paper-edge: #e7dcc1;
+  --accent: #8c1c13;
+  --muted: #6b5d49;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: #2a2622;
+  color: var(--ink);
+  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dark room around the paper */
+.paper {
+  min-height: 100vh;
+  padding: 32px 16px 64px;
+  display: flex;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at top, #34302b 0%, #211d19 70%);
+}
+
+/* The newspaper sheet */
+.sheet {
+  width: 100%;
+  max-width: 760px;
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(140, 110, 60, 0.06) 0, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(140, 110, 60, 0.05) 0, transparent 60%);
+  padding: 40px clamp(20px, 5vw, 56px) 48px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--paper-edge);
+  position: relative;
+}
+
+/* Masthead */
+.masthead {
+  text-align: center;
+  border-bottom: 3px double var(--ink);
+  padding-bottom: 12px;
+}
+
+.masthead-rule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 6px 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  font-style: italic;
+}
+
+.masthead-rule.top {
+  border-bottom: none;
+  margin-bottom: 8px;
+}
+
+.masthead-rule.bottom {
+  border-bottom: none;
+  justify-content: center;
+}
+
+.masthead-rule .edition {
+  font-style: normal;
+  letter-spacing: 0.16em;
+}
+
+.title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 10px 0 6px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Lead story */
+.lead {
+  padding: 26px 0 24px;
+  border-bottom: 1px solid var(--ink);
+  text-align: center;
+}
+
+.kicker {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--accent);
+  padding: 4px 12px;
+  margin-bottom: 14px;
+}
+
+.headline {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.subhead {
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--muted);
+  max-width: 34ch;
+  margin: 0 auto 16px;
+}
+
+.byline {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.lead-body {
+  text-align: left;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.lead-body p {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  font-size: 3.4rem;
+  float: left;
+  line-height: 0.8;
+  padding: 6px 10px 0 0;
+  color: var(--accent);
+}
+
+/* Three columns */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.column {
+  position: relative;
+}
+
+.column + .column {
+  padding-left: 24px;
+  border-left: 1px solid rgba(28, 24, 20, 0.25);
+}
+
+.column-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.column p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Pull quote */
+.pull-quote {
+  text-align: center;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.pull-quote blockquote {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  line-height: 1.35;
+  max-width: 28ch;
+  margin: 0 auto 12px;
+}
+
+.pull-quote cite {
+  font-style: normal;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Reasons */
+.reasons {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.reasons ul {
+  list-style: none;
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+.reasons li {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  padding: 12px 0;
+  border-bottom: 1px dotted rgba(28, 24, 20, 0.3);
+}
+
+.reasons li:last-child {
+  border-bottom: none;
+}
+
+.reasons .num {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+/* Coupon */
+.coupon {
+  margin: 32px auto 0;
+  max-width: 380px;
+  text-align: center;
+  border: 2px dashed var(--ink);
+  padding: 22px 18px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.coupon-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.coupon-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin: 8px 0;
+  color: var(--accent);
+}
+
+.coupon-fine {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Footer */
+.paper-footer {
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 3px double var(--ink);
+}
+
+.paper-footer .heart {
+  display: block;
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.paper-footer p {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .column + .column {
+    padding-left: 0;
+    border-left: none;
+    padding-top: 18px;
+    margin-top: 18px;
+    border-top: 1px solid rgba(28, 24, 20, 0.25);
+  }
+
+  .masthead-rule.top {
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.66rem;
+  }
+}
