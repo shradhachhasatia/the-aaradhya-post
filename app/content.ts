@@ -12,10 +12,10 @@ export const masthead = {
 };
 
 export const gate = {
-  eyebrow: "Special Delivery",
+  eyebrow: "Special Delivery, Handle With Care",
   tagline:
     "One newspaper. One subscriber. Infinite headlines about how wonderful you are.",
   waitingLine: "The presses are warming up — first edition drops soon.",
-  openLabel: "Open This Week's Paper",
-  archiveLabel: "Read past editions",
+  openLabel: "Open This Week's Paper ♡",
+  archiveLabel: "psst... read the old letters here",
 };

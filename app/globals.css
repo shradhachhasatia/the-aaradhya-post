@@ -4,6 +4,16 @@
   --paper-edge: #e7dcc1;
   --accent: #8c1c13;
   --muted: #6b5d49;
+
+  /* Scrapbook palette */
+  --kraft: #d9c6a0;
+  --kraft-dark: #4a3323;
+  --cream: #fdf8ec;
+  --rose: #c1476b;
+  --rose-dark: #8f2f4c;
+  --mustard: #d9a441;
+  --sage: #849873;
+  --sky: #6fa9c2;
 }
 
 * {
@@ -445,157 +455,453 @@ body {
   padding: 20px 0;
 }
 
-/* Gate / entry page */
-.gate {
+/* ───────────────────────── Scrapbook system ───────────────────────── */
+
+.kraft-bg {
+  background-color: var(--kraft);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.22), transparent 42%),
+    radial-gradient(circle at 88% 82%, rgba(0, 0, 0, 0.12), transparent 46%),
+    repeating-linear-gradient(
+      120deg,
+      rgba(90, 65, 35, 0.05) 0px,
+      rgba(90, 65, 35, 0.05) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+.washi {
+  position: absolute;
+  height: 26px;
+  display: inline-block;
+  opacity: 0.85;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.washi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.35) 0px,
+    rgba(255, 255, 255, 0.35) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.washi-rose {
+  background: var(--rose);
+}
+.washi-mustard {
+  background: var(--mustard);
+}
+.washi-sage {
+  background: var(--sage);
+}
+.washi-sky {
+  background: var(--sky);
+}
+
+.floating-bits {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-bit {
+  position: absolute;
+  bottom: 0;
+}
+
+.floating-bit-icon {
+  width: 100%;
+  height: 100%;
+  color: rgba(140, 28, 19, 0.35);
+}
+
+/* ─────────────── Lock screen ─────────────── */
+
+.lockscreen {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 32px 16px;
-  background:
-    radial-gradient(ellipse at top, #34302b 0%, #211d19 70%);
   position: relative;
   overflow: hidden;
+  background-color: var(--kraft-dark);
+  background-image:
+    radial-gradient(ellipse at top, #6b4a34 0%, #3a2617 75%),
+    radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.35), transparent 55%);
 }
 
-.gate::before,
-.gate::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(140, 28, 19, 0.25), transparent 70%);
-  filter: blur(10px);
+.lockscreen .floating-bit-icon {
+  color: rgba(253, 248, 236, 0.5);
 }
 
-.gate::before {
-  width: 420px;
-  height: 420px;
-  top: -140px;
-  left: -120px;
-}
-
-.gate::after {
-  width: 360px;
-  height: 360px;
-  bottom: -140px;
-  right: -100px;
-}
-
-.gate-card {
+.diary {
   position: relative;
   width: 100%;
-  max-width: 460px;
-  background: var(--paper);
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(140, 110, 60, 0.06) 0, transparent 60%),
-    radial-gradient(circle at 80% 70%, rgba(140, 110, 60, 0.05) 0, transparent 60%);
-  border: 1px solid var(--paper-edge);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
-  padding: 48px 32px 40px;
+  max-width: 420px;
+  background: var(--cream);
+  background-image: radial-gradient(
+    circle at 25% 20%,
+    rgba(140, 110, 60, 0.08),
+    transparent 55%
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 0 6px rgba(74, 51, 35, 0.15);
+  padding: 46px 32px 38px;
   text-align: center;
-  transform: rotate(-0.6deg);
-  animation: settle 0.7s ease-out;
+  z-index: 1;
 }
 
-@keyframes settle {
-  from {
-    opacity: 0;
-    transform: rotate(-3deg) translateY(14px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(-0.6deg) translateY(0) scale(1);
-  }
+.diary-tape {
+  top: -14px;
 }
 
-.gate-stamp {
-  display: inline-flex;
-  align-items: center;
+.diary-tape-left {
+  left: 20px;
+}
+
+.diary-tape-right {
+  right: 24px;
+}
+
+.diary-sparkle {
+  position: absolute;
+  color: var(--mustard);
+  width: 22px;
+  height: 22px;
+}
+
+.diary-sparkle-a {
+  top: 36px;
+  left: 28px;
+  transform: rotate(-12deg);
+}
+
+.diary-sparkle-b {
+  bottom: 100px;
+  right: 26px;
+  color: var(--rose);
+  transform: rotate(20deg);
+}
+
+.diary-eyebrow {
+  font-family: var(--font-scrawl), cursive;
+  font-size: 0.9rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.diary-title {
+  font-family: var(--font-hand), cursive;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 10vw, 3.6rem);
+  color: var(--rose-dark);
+  line-height: 1;
+  margin: 4px 0 2px;
+}
+
+.diary-squiggle {
+  width: 100px;
+  color: var(--sage);
+  margin: 6px auto 18px;
+}
+
+.diary-lock-row {
+  display: flex;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  font-size: 1.4rem;
   margin-bottom: 14px;
+  height: 52px;
+  align-items: center;
 }
 
-.gate-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
+.padlock {
+  font-size: 2.6rem;
+  line-height: 1;
 }
 
-.gate-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 8vw, 3.2rem);
-  line-height: 0.98;
-  margin-bottom: 8px;
+.diary-copy {
+  font-family: var(--font-scrawl), cursive;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 22px;
 }
 
-.gate-motto {
-  font-style: italic;
-  color: var(--muted);
+.diary-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.diary-input {
+  width: 100%;
+  max-width: 280px;
+  font-family: var(--font-scrawl), cursive;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 2px dashed var(--muted);
+  background: transparent;
+  color: var(--ink);
+  outline: none;
+}
+
+.diary-input:focus {
+  border-bottom-color: var(--rose);
+}
+
+.diary-button {
+  font-family: var(--font-marker), cursive;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  background: var(--rose);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 rgba(74, 51, 35, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.diary-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.diary-button:not(:disabled):hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(74, 51, 35, 0.35);
+}
+
+.diary-error {
+  font-family: var(--font-scrawl), cursive;
+  color: var(--rose-dark);
+  margin-top: 14px;
   font-size: 1rem;
 }
 
-.gate-rule {
-  border-top: 3px double var(--ink);
-  margin: 22px auto;
-  width: 70%;
+.inline-heart {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: -1px;
+  color: var(--rose);
 }
 
-.gate-tagline {
-  font-size: 1.02rem;
-  line-height: 1.6;
-  max-width: 32ch;
-  margin: 0 auto 26px;
+.confetti-burst {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 0;
+  height: 0;
 }
 
-.gate-edition-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.confetti-bit {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px;
+  color: var(--rose);
+}
+
+/* ─────────────── Scrapbook gate ─────────────── */
+
+.scrapboard {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 16px;
+  position: relative;
+  overflow: hidden;
+  perspective: 1200px;
+  background-color: var(--kraft);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.22), transparent 42%),
+    radial-gradient(circle at 88% 82%, rgba(0, 0, 0, 0.12), transparent 46%),
+    repeating-linear-gradient(
+      120deg,
+      rgba(90, 65, 35, 0.05) 0px,
+      rgba(90, 65, 35, 0.05) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+.scrap-scene {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  transform-style: preserve-3d;
+}
+
+.scrap-polaroids {
+  display: flex;
+  gap: 22px;
+  margin-bottom: -6px;
+}
+
+.polaroid {
+  position: relative;
+  background: var(--cream);
+  padding: 12px 12px 34px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+  width: 116px;
+}
+
+.polaroid-tape {
+  top: -12px;
+  left: 50%;
+  margin-left: -45px;
+}
+
+.polaroid-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #f1e4c8, #e3d2ab);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid-doodle {
+  width: 44%;
+  height: 44%;
+  color: var(--rose);
+}
+
+.polaroid-caption {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.scrap-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: var(--cream);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.35);
+  padding: 46px 32px 40px;
+  text-align: center;
+}
+
+.scrap-card-tape {
+  top: -14px;
+  left: 50%;
+  margin-left: -50px;
+}
+
+.scrap-eyebrow {
+  font-family: var(--font-scrawl), cursive;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.scrap-title {
+  font-family: var(--font-hand), cursive;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 11vw, 4.2rem);
+  line-height: 0.95;
+  color: var(--rose-dark);
+  margin: 4px 0 2px;
+}
+
+.scrap-motto {
+  font-family: var(--font-scrawl), cursive;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.scrap-squiggle {
+  width: 110px;
+  color: var(--sky);
+  margin: 14px auto;
+}
+
+.scrap-tagline {
+  font-family: var(--font-scrawl), cursive;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 30ch;
+  margin: 0 auto 24px;
+  color: var(--ink);
+}
+
+.scrap-edition-label {
+  font-family: var(--font-scrawl), cursive;
+  font-size: 0.95rem;
   color: var(--muted);
   margin-bottom: 16px;
 }
 
-.gate-button {
+.scrap-button {
   display: inline-block;
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 700;
+  font-family: var(--font-marker), cursive;
   font-size: 1.05rem;
-  letter-spacing: 0.02em;
-  color: var(--paper);
-  background: var(--accent);
+  color: var(--cream);
+  background: var(--rose);
   padding: 14px 30px;
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: 4px 4px 0 rgba(28, 24, 20, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 4px 4px 0 rgba(74, 51, 35, 0.3);
 }
 
-.gate-button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 rgba(28, 24, 20, 0.35);
+.scrap-archive {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
 }
 
-.gate-archive-link {
-  display: block;
-  margin-top: 22px;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
+.scrap-arrow {
+  width: 46px;
+  color: var(--muted);
+  transform: scaleX(-1) rotate(8deg);
+}
+
+.scrap-archive-link {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.3rem;
   color: var(--muted);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px dashed var(--muted);
 }
 
-.gate-archive-link:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+.scrap-archive-link:hover {
+  color: var(--rose-dark);
+  border-color: var(--rose-dark);
+}
+
+@media (max-width: 480px) {
+  .scrap-polaroids {
+    gap: 12px;
+  }
+
+  .polaroid {
+    width: 92px;
+  }
 }
 
 /* Mobile */
