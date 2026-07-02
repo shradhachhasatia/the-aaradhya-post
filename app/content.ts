@@ -12,10 +12,16 @@ export const masthead = {
 };
 
 export const gate = {
-  eyebrow: "Special Delivery, Handle With Care",
-  tagline:
-    "One newspaper. One subscriber. Infinite headlines about how wonderful you are.",
+  eyebrow: "A Newspaper Of One. Est. 2026.",
   waitingLine: "The presses are warming up — first edition drops soon.",
-  openLabel: "Open This Week's Paper ♡",
-  archiveLabel: "psst... read the old letters here",
+  openLabel: "Read The Full Issue",
+  archiveLabel: "Archive",
+};
+
+export const lock = {
+  eyebrow: "Private Edition",
+  copy: "This one's for subscribers only.",
+  placeholder: "Enter password",
+  button: "Unlock",
+  wrong: "Incorrect password — try again.",
 };

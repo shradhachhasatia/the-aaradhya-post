@@ -48,6 +48,15 @@ export async function getLatestEdition(): Promise<Edition | null> {
   return data;
 }
 
+export async function getIssueNumber(date: string): Promise<number> {
+  const { count } = await supabase
+    .from("editions")
+    .select("id", { count: "exact", head: true })
+    .eq("published", true)
+    .lte("edition_date", date);
+  return count ?? 1;
+}
+
 export async function getEditionByDate(date: string): Promise<Edition | null> {
   const { data } = await supabase
     .from("editions")
