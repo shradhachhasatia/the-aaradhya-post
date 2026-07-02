@@ -306,8 +306,314 @@ body {
   color: var(--muted);
 }
 
+/* Top nav on inner pages */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.topnav a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.topnav a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Song of the week */
+.song {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.song-label {
+  display: block;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.song-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--paper-edge);
+}
+
+.song-cover {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 rgba(28, 24, 20, 0.15);
+}
+
+.song-info {
+  min-width: 0;
+}
+
+.song-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.song-artist {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.song-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
+.song-link:hover {
+  opacity: 0.75;
+}
+
+/* Archive */
+.archive-title {
+  font-size: clamp(2rem, 7vw, 3.4rem);
+}
+
+.archive-list {
+  padding: 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.archive-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 4px;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px dotted rgba(28, 24, 20, 0.3);
+  transition: background 0.15s ease;
+}
+
+.archive-item:hover {
+  background: rgba(140, 28, 19, 0.06);
+}
+
+.archive-date {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.archive-headline {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  text-align: right;
+}
+
+.archive-empty {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* Gate / entry page */
+.gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background:
+    radial-gradient(ellipse at top, #34302b 0%, #211d19 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gate::before,
+.gate::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(140, 28, 19, 0.25), transparent 70%);
+  filter: blur(10px);
+}
+
+.gate::before {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -120px;
+}
+
+.gate::after {
+  width: 360px;
+  height: 360px;
+  bottom: -140px;
+  right: -100px;
+}
+
+.gate-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(140, 110, 60, 0.06) 0, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(140, 110, 60, 0.05) 0, transparent 60%);
+  border: 1px solid var(--paper-edge);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  padding: 48px 32px 40px;
+  text-align: center;
+  transform: rotate(-0.6deg);
+  animation: settle 0.7s ease-out;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: rotate(-3deg) translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-0.6deg) translateY(0) scale(1);
+  }
+}
+
+.gate-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.gate-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.gate-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  line-height: 0.98;
+  margin-bottom: 8px;
+}
+
+.gate-motto {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.gate-rule {
+  border-top: 3px double var(--ink);
+  margin: 22px auto;
+  width: 70%;
+}
+
+.gate-tagline {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  max-width: 32ch;
+  margin: 0 auto 26px;
+}
+
+.gate-edition-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.gate-button {
+  display: inline-block;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  background: var(--accent);
+  padding: 14px 30px;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 rgba(28, 24, 20, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gate-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(28, 24, 20, 0.35);
+}
+
+.gate-archive-link {
+  display: block;
+  margin-top: 22px;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.gate-archive-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
 /* Mobile */
 @media (max-width: 600px) {
+  .song-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .archive-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .archive-headline {
+    text-align: left;
+  }
+
   .columns {
     grid-template-columns: 1fr;
     gap: 0;

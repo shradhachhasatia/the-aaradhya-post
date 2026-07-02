@@ -1,14 +1,24 @@
 # The Aaradhya Post 📰❤️
 
-A personalized newspaper-style newsletter website, built with Next.js.
+A personalized newspaper-style newsletter website, built with Next.js and
+Supabase.
 
-## How to personalize it
+- `/` — the entry page (a little wax-sealed envelope that opens into the
+  latest edition).
+- `/post/[date]` — a single edition, e.g. `/post/2026-07-03`.
+- `/archive` — every past edition, ever.
 
-**You only need to edit one file:** [`app/content.ts`](app/content.ts).
+## How new editions get published
 
-Open it, change the words inside the quotes (the headline, the stories, the
-list of reasons, the quote, the coupon), save, and the site updates. No coding
-required — just keep the quotes and commas where they are.
+Every newsletter is a row in the `editions` table in Supabase — nothing is
+hardcoded in the repo, so publishing a new week doesn't require touching code
+or redeploying. Add a row (edition date, headline, story, columns, reasons,
+quote, coupon, and optionally a song of the week with cover art + link), set
+`published = true`, and it appears on the site immediately.
+
+Only `app/content.ts` still lives in the repo, and it just holds the site's
+permanent identity (title, motto, gate-page copy) — things that don't change
+week to week.
 
 ## Run it locally
 
@@ -17,7 +27,8 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:3000.
+Copy `.env.example` to `.env.local` and fill in your Supabase project URL and
+anon key first. Then open http://localhost:3000.
 
 ## Deploy to Vercel
 
