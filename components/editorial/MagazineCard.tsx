@@ -1,31 +1,29 @@
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
-type Tone = "rust" | "ink" | "sand" | "olive";
-
 type Props = {
   tag: string;
   title: string;
   teaser?: string;
-  tone?: Tone;
   icon?: ReactNode;
   lead?: boolean;
+  accent?: boolean;
 };
 
-export function MagazineCard({ tag, title, teaser, tone = "sand", icon, lead }: Props) {
+export function MagazineCard({ tag, title, teaser, icon, lead, accent }: Props) {
   return (
     <motion.article
-      className={`mag-card mag-card-${tone} ${lead ? "mag-card-lead" : ""}`}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className={`mag-row ${lead ? "mag-row-lead" : ""}`}
+      whileHover={{ x: 4 }}
+      transition={{ type: "spring", stiffness: 300, damping: 24 }}
     >
-      <div className="mag-card-block">
-        {icon && <span className="mag-card-icon">{icon}</span>}
+      <div className={`mag-row-tag ${accent ? "mag-row-tag-accent" : ""}`}>
+        {icon && <span className="mag-row-icon">{icon}</span>}
+        <span>{tag}</span>
       </div>
-      <div className="mag-card-body">
-        <span className="mag-card-tag">{tag}</span>
-        <h3 className="mag-card-title">{title}</h3>
-        {teaser && <p className="mag-card-teaser">{teaser}</p>}
+      <div className="mag-row-body">
+        <h3 className="mag-row-title">{title}</h3>
+        {teaser && <p className="mag-row-teaser">{teaser}</p>}
       </div>
     </motion.article>
   );

@@ -75,3 +75,33 @@ export function ArrowLine({ className }: Props) {
     </svg>
   );
 }
+
+export function ArchiveMark({ className }: Props) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} fill="none">
+      <rect x="2" y="6" width="28" height="7" rx="1" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M4 13V27H28V13" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M13 18H19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function StampSeal({ className }: Props) {
+  return (
+    <svg viewBox="0 0 44 44" className={className} fill="none">
+      <circle
+        cx="22"
+        cy="22"
+        r="19"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeDasharray="2.6 3.2"
+      />
+      <circle cx="22" cy="22" r="13.5" stroke="currentColor" strokeWidth="1.2" />
+      <path
+        d="M22 15L24.1 19.9L29.5 20.4L25.4 23.9L26.6 29.2L22 26.4L17.4 29.2L18.6 23.9L14.5 20.4L19.9 19.9Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

@@ -4,7 +4,15 @@ import Link from "next/link";
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, type Variants } from "framer-motion";
 import { MagazineCard } from "./MagazineCard";
-import { HeartLine, SunLine, BookLine, MusicLine, StarLine, ArrowLine } from "./Icons";
+import {
+  HeartLine,
+  SunLine,
+  BookLine,
+  StarLine,
+  ArrowLine,
+  ArchiveMark,
+  StampSeal,
+} from "./Icons";
 
 type ColumnItem = { title: string; body: string };
 
@@ -29,10 +37,10 @@ type Props = {
 
 function iconFor(title: string) {
   const t = title.toLowerCase();
-  if (t.includes("weather")) return <SunLine className="mag-card-icon-svg" />;
-  if (t.includes("sport")) return <HeartLine className="mag-card-icon-svg" />;
-  if (t.includes("cultur")) return <BookLine className="mag-card-icon-svg" />;
-  return <StarLine className="mag-card-icon-svg" />;
+  if (t.includes("weather")) return <SunLine className="mag-row-icon-svg" />;
+  if (t.includes("sport")) return <HeartLine className="mag-row-icon-svg" />;
+  if (t.includes("cultur")) return <BookLine className="mag-row-icon-svg" />;
+  return <StarLine className="mag-row-icon-svg" />;
 }
 
 const container: Variants = {
@@ -103,8 +111,8 @@ export function CoverScene({
       onMouseLeave={handleMouseLeave}
     >
       <nav className="cover-nav">
-        <Link href="/archive" className="cover-nav-link">
-          {archiveLabel}
+        <Link href="/archive" className="cover-nav-link" aria-label={archiveLabel} title={archiveLabel}>
+          <ArchiveMark className="cover-nav-archive-icon" />
         </Link>
         <span className="cover-nav-brand">{title}</span>
         <span className="cover-nav-meta">
@@ -132,50 +140,49 @@ export function CoverScene({
 
         {headline ? (
           <>
-            <section className="cover-grid">
-              <motion.div variants={item} className="mag-card-slot mag-card-slot-lead">
+            <section className="mag-list">
+              <motion.div variants={item}>
                 <MagazineCard
                   lead
-                  tag="P.01 — LEAD STORY"
+                  accent
+                  tag="P.01 — Lead Story"
                   title={headline}
                   teaser={subhead ?? undefined}
-                  tone="rust"
-                  icon={<HeartLine className="mag-card-icon-svg" />}
+                  icon={<HeartLine className="mag-row-icon-svg" />}
                 />
               </motion.div>
 
               {columns.map((col, i) => (
-                <motion.div variants={item} key={col.title} className="mag-card-slot">
+                <motion.div variants={item} key={col.title}>
                   <MagazineCard
-                    tag={`P.0${i + 2}`}
+                    tag={`P.0${i + 2} — ${col.title}`}
                     title={col.title}
                     teaser={col.body}
-                    tone={i % 2 === 0 ? "sand" : "olive"}
                     icon={iconFor(col.title)}
                   />
                 </motion.div>
               ))}
 
               {reasonsTitle && reasonsCount > 0 && (
-                <motion.div variants={item} className="mag-card-slot">
+                <motion.div variants={item}>
                   <MagazineCard
-                    tag="TOP HEADLINES"
+                    tag="Top Headlines"
                     title={reasonsTitle}
                     teaser={`${reasonsCount} reasons, and counting.`}
-                    tone="ink"
-                    icon={<StarLine className="mag-card-icon-svg" />}
+                    icon={<StarLine className="mag-row-icon-svg" />}
                   />
                 </motion.div>
               )}
 
               {songTitle && (
-                <motion.div variants={item} className="mag-card-slot">
+                <motion.div variants={item}>
                   <MagazineCard
-                    tag="SONG OF THE WEEK"
+                    lead
+                    accent
+                    tag="Song Of The Week"
                     title={songTitle}
                     teaser={songArtist ?? undefined}
-                    tone="rust"
-                    icon={<MusicLine className="mag-card-icon-svg" />}
+                    icon={<StampSeal className="mag-row-icon-svg mag-row-icon-stamp" />}
                   />
                 </motion.div>
               )}
