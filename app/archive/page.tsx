@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { masthead } from "../content";
 import { getAllEditions } from "../../lib/supabase";
 
 export const dynamic = "force-dynamic";
@@ -18,17 +17,18 @@ export default async function ArchivePage() {
 
   return (
     <main className="archive-page">
-      <nav className="cover-nav">
-        <Link href="/" className="cover-nav-link">
-          &larr; Home
+      <nav className="topnav">
+        <Link href="/" className="topnav-link">
+          &larr; Latest Issue
         </Link>
-        <span className="cover-nav-brand">{masthead.title}</span>
-        <span className="cover-nav-meta">{editions.length} issues</span>
+        <span className="topnav-count">
+          {editions.length} {editions.length === 1 ? "issue" : "issues"}
+        </span>
       </nav>
 
       <header className="archive-hero">
-        <h1 className="archive-hero-title">Archive</h1>
-        <p className="archive-hero-sub">Every issue, in order, ever printed.</p>
+        <h1 className="archive-hero-title">Back Issues</h1>
+        <p className="archive-hero-sub">Every letter, kept.</p>
       </header>
 
       <section className="archive-grid">

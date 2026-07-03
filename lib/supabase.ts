@@ -13,6 +13,7 @@ export type ColumnItem = {
 export type Edition = {
   id: string;
   edition_date: string;
+  editor_note: string | null;
   kicker: string;
   headline: string;
   subhead: string;
