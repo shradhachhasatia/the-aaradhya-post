@@ -17,11 +17,3 @@ export const gate = {
   openLabel: "Read The Full Issue",
   archiveLabel: "Archive",
 };
-
-export const lock = {
-  eyebrow: "Private Edition",
-  copy: "This one's for subscribers only.",
-  placeholder: "Enter password",
-  button: "Unlock",
-  wrong: "Incorrect password — try again.",
-};
