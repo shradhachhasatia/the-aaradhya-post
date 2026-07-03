@@ -7,19 +7,13 @@ type Props = {
 export function Masthead({ motto, metaLeft, metaRight }: Props) {
   return (
     <header className="masthead">
-      <div className="masthead-rule" />
-      <h1 className="masthead-logo">
-        <span className="masthead-the">The</span>
-        <span className="masthead-name">Aaradhya</span>
-        <span className="masthead-post">Post</span>
-      </h1>
-      <p className="masthead-motto">{motto}</p>
-      <div className="masthead-rule" />
-      <div className="masthead-meta">
-        <span>{metaLeft}</span>
-        <span className="masthead-meta-dot">&middot;</span>
+      <p className="masthead-eyebrow">
         <span>{metaRight}</span>
-      </div>
+        <span className="masthead-eyebrow-dot">·</span>
+        <span>{metaLeft}</span>
+      </p>
+      <h1 className="masthead-logo">The Aaradhya Post</h1>
+      <p className="masthead-motto">{motto}</p>
     </header>
   );
 }

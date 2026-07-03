@@ -1,12 +1,18 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   THE AARADHYA POST — minimal & elegant.
+   Near-monochrome off-white, Fraunces serif + Inter, generous whitespace,
+   and a single restrained accent used only on small marks and numbers.
+   ───────────────────────────────────────────────────────────────────────── */
+
 :root {
-  --paper: #f6efe0;
-  --paper-edge: #e8dbb9;
-  --ink: #2b2420;
-  --muted: #7d6e58;
-  --wine: #7c2d3c;
-  --wine-deep: #5c2029;
-  --gold: #b8863b;
-  --tape: #e3c896;
+  --bg: #fcfbf9;
+  --ink: #1a1815;
+  --body: #35302a;
+  --soft: #6f6a62;
+  --faint: #b0aaa0;
+  --line: #e8e4dc;
+  --line-strong: #d9d4ca;
+  --accent: #9c5f57; /* muted rose — used sparingly */
 }
 
 * {
@@ -15,624 +21,587 @@
   padding: 0;
 }
 
-html,
-body {
-  background: #2a2622;
-  color: var(--ink);
-  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+html {
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Dark room around the paper */
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+::selection {
+  background: rgba(156, 95, 87, 0.16);
+}
+
+/* ── Layout shells ─────────────────────────────────────────────────────── */
 .paper {
   min-height: 100vh;
-  padding: 32px 16px 64px;
   display: flex;
   justify-content: center;
-  background: radial-gradient(ellipse at top, #34302b 0%, #211d19 70%);
+  padding: clamp(28px, 6vw, 64px) 24px 96px;
 }
 
-/* The newspaper sheet */
 .sheet {
   width: 100%;
-  max-width: 760px;
-  background: var(--paper);
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(140, 110, 60, 0.06) 0, transparent 60%),
-    radial-gradient(circle at 80% 70%, rgba(140, 110, 60, 0.05) 0, transparent 60%);
-  padding: 8px clamp(20px, 5vw, 56px) 48px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-  border: 1px solid var(--paper-edge);
-  position: relative;
+  max-width: 640px;
 }
 
-/* Top nav */
+/* ── Small labels shared across sections ───────────────────────────────── */
+.kicker,
+.column-title,
+.coupon-label,
+.song-label,
+.editor-note-label,
+.masthead-eyebrow,
+.topnav-count,
+.archive-card-tag {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--faint);
+}
+
+/* ── Top navigation ────────────────────────────────────────────────────── */
 .topnav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 0;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
+  margin-bottom: clamp(40px, 8vw, 72px);
+  min-height: 20px;
 }
 
 .topnav-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--muted);
+  gap: 8px;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--soft);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.18s ease;
 }
 
 .topnav-link:hover {
-  color: var(--wine);
-  border-bottom-color: var(--wine);
+  color: var(--accent);
 }
 
 .topnav-icon {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.7;
 }
 
-.topnav-count {
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.7rem;
-}
-
-/* Masthead / logo */
+/* ── Masthead ──────────────────────────────────────────────────────────── */
 .masthead {
   text-align: center;
-  padding: 22px 0 20px;
 }
 
-.masthead-rule {
-  border-top: 2px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  height: 4px;
-}
-
-.masthead-logo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  gap: 0.35em;
-  margin: 16px 0 6px;
-  line-height: 1;
-}
-
-.masthead-the {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 700;
-  font-style: italic;
-  font-size: clamp(1rem, 3vw, 1.4rem);
-  color: var(--muted);
-}
-
-.masthead-name {
-  font-family: var(--font-hand), cursive;
-  font-weight: 700;
-  font-size: clamp(2.6rem, 11vw, 4.4rem);
-  color: var(--wine);
-  transform: rotate(-2deg);
-  display: inline-block;
-}
-
-.masthead-post {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  font-size: clamp(1.6rem, 6vw, 2.6rem);
-  letter-spacing: 0.02em;
-}
-
-.masthead-motto {
-  font-family: var(--font-body), Georgia, serif;
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-
-.masthead-meta {
+.masthead-eyebrow {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 14px;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
+  margin-bottom: 26px;
 }
 
-.masthead-meta-dot {
-  color: var(--gold);
+.masthead-eyebrow-dot {
+  color: var(--accent);
 }
 
-/* Editor's note */
+.masthead-logo {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.masthead-motto {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.6vw, 1.18rem);
+  color: var(--soft);
+  margin-top: 16px;
+}
+
+/* Landing "warming up" fallback */
+.cover-waiting {
+  text-align: center;
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  color: var(--soft);
+  margin-top: 40px;
+}
+
+/* ── Section rhythm ────────────────────────────────────────────────────── */
+.editor-note,
+.lead,
+.columns,
+.pull-quote,
+.reasons,
+.song,
+.coupon {
+  margin-top: clamp(48px, 9vw, 80px);
+}
+
+/* ── Editor's note ─────────────────────────────────────────────────────── */
 .editor-note {
-  position: relative;
-  margin: 8px auto 28px;
-  max-width: 560px;
-  background: #fbf6e9;
-  border: 1px solid var(--paper-edge);
-  box-shadow: 0 6px 16px rgba(43, 36, 32, 0.12);
-  padding: 22px 26px 20px;
-  transform: rotate(-0.6deg);
+  text-align: center;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(28px, 6vw, 40px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .editor-note-tape {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  margin-left: -46px;
-  width: 92px;
-  height: 24px;
-  background: var(--tape);
-  opacity: 0.85;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  transform: rotate(-3deg);
+  display: none; /* no scrapbook tape in the minimal look */
 }
 
 .editor-note-label {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-  text-align: center;
+  margin-bottom: 16px;
 }
 
 .editor-note-body {
-  font-family: var(--font-hand), cursive;
-  font-size: 1.3rem;
-  line-height: 1.45;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
+  line-height: 1.5;
   color: var(--ink);
-  text-align: center;
   white-space: pre-wrap;
 }
 
-/* Lead story */
+/* ── Lead story ────────────────────────────────────────────────────────── */
 .lead {
-  padding: 26px 0 24px;
-  border-bottom: 1px solid var(--ink);
   text-align: center;
 }
 
 .kicker {
-  display: inline-block;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--paper);
-  background: var(--wine);
-  padding: 4px 12px;
-  margin-bottom: 14px;
+  display: block;
+  margin-bottom: 18px;
+  color: var(--accent);
 }
 
 .headline {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  line-height: 1.05;
-  margin-bottom: 12px;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.9rem, 6vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0 auto 16px;
 }
 
 .subhead {
+  font-family: var(--font-serif), Georgia, serif;
   font-style: italic;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: var(--muted);
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+  color: var(--soft);
   max-width: 34ch;
-  margin: 0 auto 16px;
+  margin: 0 auto 22px;
 }
 
 .byline {
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 18px;
+  color: var(--faint);
+  margin-bottom: 34px;
 }
 
 .lead-body {
   text-align: left;
-  max-width: 60ch;
+  max-width: 34rem;
   margin: 0 auto;
 }
 
 .lead-body p {
-  font-size: 1.02rem;
-  line-height: 1.7;
-  margin-bottom: 14px;
-  text-align: justify;
-  hyphens: auto;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--body);
+  margin-bottom: 20px;
 }
 
 .dropcap::first-letter {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  font-size: 3.4rem;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: 3.1rem;
   float: left;
-  line-height: 0.8;
-  padding: 6px 10px 0 0;
-  color: var(--wine);
+  line-height: 0.82;
+  padding: 6px 12px 0 0;
+  color: var(--ink);
 }
 
-/* Three columns */
+/* ── Columns ───────────────────────────────────────────────────────────── */
 .columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--ink);
-}
-
-.column {
-  position: relative;
-}
-
-.column + .column {
-  padding-left: 24px;
-  border-left: 1px solid rgba(43, 36, 32, 0.2);
+  gap: 32px;
+  padding-top: clamp(40px, 8vw, 64px);
+  border-top: 1px solid var(--line);
 }
 
 .column-title {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 4px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--soft);
 }
 
 .column-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--gold);
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  opacity: 0.8;
   flex-shrink: 0;
 }
 
 .column p {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  text-align: justify;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--body);
 }
 
-/* Pull quote */
+/* ── Pull quote ────────────────────────────────────────────────────────── */
 .pull-quote {
   text-align: center;
-  padding: 34px 0;
-  border-bottom: 1px solid var(--ink);
+  padding-top: clamp(40px, 8vw, 64px);
+  border-top: 1px solid var(--line);
 }
 
 .pull-quote blockquote {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 700;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
   font-style: italic;
-  font-size: clamp(1.3rem, 4vw, 2rem);
-  line-height: 1.35;
-  max-width: 28ch;
-  margin: 0 auto 12px;
+  font-size: clamp(1.35rem, 4vw, 1.95rem);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0 auto 16px;
 }
 
 .pull-quote cite {
   font-style: normal;
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--faint);
 }
 
-/* Reasons */
+/* ── Reasons / top headlines ───────────────────────────────────────────── */
 .reasons {
-  padding: 28px 0;
-  border-bottom: 1px solid var(--ink);
+  padding-top: clamp(40px, 8vw, 64px);
+  border-top: 1px solid var(--line);
 }
 
 .section-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   text-align: center;
-  margin-bottom: 18px;
+  color: var(--ink);
+  margin-bottom: 24px;
 }
 
 .reasons ul {
   list-style: none;
-  max-width: 52ch;
+  max-width: 34rem;
   margin: 0 auto;
 }
 
 .reasons li {
+  display: flex;
+  gap: 14px;
   font-size: 1.02rem;
   line-height: 1.6;
-  padding: 12px 0;
-  border-bottom: 1px dotted rgba(43, 36, 32, 0.25);
+  color: var(--body);
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
 }
 
-.reasons li:last-child {
-  border-bottom: none;
+.reasons li:first-child {
+  border-top: none;
 }
 
 .reasons .num {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  color: var(--wine);
-  margin-right: 6px;
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
 }
 
-/* Song of the week */
+/* ── Song of the week ──────────────────────────────────────────────────── */
 .song {
-  padding: 30px 0;
-  border-bottom: 1px solid var(--ink);
-  display: flex;
-  justify-content: center;
+  padding-top: clamp(40px, 8vw, 64px);
+  border-top: 1px solid var(--line);
 }
 
 .song-card {
   display: flex;
   align-items: center;
-  gap: 18px;
-  max-width: 440px;
+  gap: 20px;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 22px 24px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
 }
 
 .song-stamp {
-  width: 56px;
-  height: 56px;
-  color: var(--wine);
+  width: 40px;
+  height: 40px;
+  color: var(--accent);
+  opacity: 0.85;
   flex-shrink: 0;
 }
 
 .song-info {
-  min-width: 0;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .song-label {
-  display: block;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
   margin-bottom: 4px;
 }
 
 .song-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 700;
+  font-family: var(--font-serif), Georgia, serif;
   font-size: 1.2rem;
-  line-height: 1.25;
+  color: var(--ink);
 }
 
 .song-artist {
-  font-style: italic;
-  color: var(--muted);
-  margin-top: 2px;
+  font-size: 0.9rem;
+  color: var(--soft);
 }
 
 .song-link {
-  display: inline-block;
   margin-top: 8px;
-  font-family: var(--font-sans), sans-serif;
   font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--wine);
+  letter-spacing: 0.04em;
+  color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid var(--wine);
 }
 
 .song-link:hover {
-  opacity: 0.75;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-/* Coupon */
+/* ── Coupon ────────────────────────────────────────────────────────────── */
 .coupon {
-  margin: 32px auto 0;
-  max-width: 380px;
   text-align: center;
-  border: 2px dashed var(--ink);
-  padding: 22px 18px;
-  background: rgba(255, 255, 255, 0.25);
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(26px, 5vw, 36px) 24px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
 }
 
 .coupon-label {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--muted);
+  display: block;
+  margin-bottom: 12px;
 }
 
 .coupon-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
-  font-size: 1.6rem;
-  margin: 8px 0;
-  color: var(--wine);
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  color: var(--ink);
+  margin-bottom: 10px;
 }
 
 .coupon-fine {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-style: italic;
-  color: var(--muted);
-  line-height: 1.5;
+  color: var(--soft);
+  line-height: 1.55;
+  max-width: 32ch;
+  margin: 0 auto;
 }
 
-/* Footer */
+/* ── Footer ────────────────────────────────────────────────────────────── */
 .paper-footer {
   text-align: center;
-  margin-top: 36px;
-  padding-top: 16px;
-  border-top: 3px double var(--ink);
+  margin-top: clamp(64px, 12vw, 104px);
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
 
 .paper-footer .heart {
   display: block;
-  color: var(--wine);
-  font-size: 1.2rem;
-  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
 }
 
 .paper-footer p {
-  font-family: var(--font-hand), cursive;
-  font-size: 1.2rem;
-  color: var(--muted);
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--soft);
 }
 
-.cover-waiting {
+/* ── Not-found ─────────────────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--ink);
   text-align: center;
-  font-family: var(--font-sans), sans-serif;
-  color: var(--muted);
-  padding: 40px 20px 80px;
+  letter-spacing: -0.015em;
 }
 
-/* ─────────────── Archive ─────────────── */
+.gate-button {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.18s ease;
+}
 
+.gate-button:hover {
+  color: var(--accent);
+}
+
+/* ── Archive ───────────────────────────────────────────────────────────── */
 .archive-page {
-  min-height: 100vh;
-  background: var(--paper);
-  max-width: 900px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 56px);
+  padding: clamp(28px, 6vw, 64px) 24px 96px;
 }
 
 .archive-hero {
-  padding: 40px 0 30px;
+  text-align: center;
+  margin-bottom: clamp(40px, 8vw, 64px);
 }
 
 .archive-hero-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 900;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
   font-size: clamp(2.2rem, 7vw, 3.4rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
 .archive-hero-sub {
-  font-family: var(--font-hand), cursive;
-  font-size: 1.3rem;
-  color: var(--muted);
-  margin-top: 6px;
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--soft);
+  margin-top: 12px;
 }
 
 .archive-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid var(--paper-edge);
-}
-
-.archive-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 26px clamp(4px, 3vw, 28px) 26px 0;
-  text-decoration: none;
-  color: var(--ink);
-  border-bottom: 1px solid var(--paper-edge);
-  transition: opacity 0.15s ease;
-}
-
-.archive-card:nth-child(odd) {
-  padding-right: 28px;
-  border-right: 1px solid var(--paper-edge);
-}
-
-.archive-card:nth-child(odd) {
-  padding-left: 0;
-}
-
-.archive-card:hover {
-  opacity: 0.7;
-}
-
-.archive-card-tag {
-  font-family: var(--font-hand), cursive;
-  font-size: 1.1rem;
-  color: var(--wine);
-}
-
-.archive-card-date {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.archive-card-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 700;
-  font-size: 1.15rem;
-  line-height: 1.3;
-}
-
-.archive-card-teaser {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.5;
 }
 
 .archive-empty {
   text-align: center;
-  color: var(--muted);
   font-style: italic;
+  color: var(--soft);
   padding: 40px 0;
-  grid-column: 1 / -1;
+}
+
+.archive-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  transition: opacity 0.18s ease;
+}
+
+.archive-grid .archive-card:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.archive-card:hover {
+  opacity: 0.62;
+}
+
+.archive-card-tag {
+  color: var(--accent);
+  margin-right: 14px;
+}
+
+.archive-card-date {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+}
+
+.archive-card-title {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 10px 0 6px;
+}
+
+.archive-card-teaser {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--soft);
+  font-size: 1rem;
 }
 
 .archive-footer {
   text-align: center;
-  padding: 40px 20px 56px;
-  font-family: var(--font-hand), cursive;
-  color: var(--muted);
-  font-size: 1.2rem;
+  margin-top: clamp(56px, 10vw, 88px);
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
 
-/* Mobile */
-@media (max-width: 640px) {
-  .archive-grid {
-    grid-template-columns: 1fr;
-  }
+.archive-footer p {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--soft);
+}
 
-  .archive-card,
-  .archive-card:nth-child(odd) {
-    padding: 22px 0;
-    border-right: none;
-  }
-
-  .song-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .song-info {
-    text-align: center;
-  }
-
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
   .columns {
     grid-template-columns: 1fr;
     gap: 0;
   }
-
   .column + .column {
-    padding-left: 0;
-    border-left: none;
-    padding-top: 18px;
-    margin-top: 18px;
-    border-top: 1px solid rgba(43, 36, 32, 0.2);
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+  }
+  .song-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .song-info {
+    align-items: center;
   }
 }
