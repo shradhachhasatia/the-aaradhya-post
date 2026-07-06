@@ -76,3 +76,13 @@ export async function getAllEditions(): Promise<Edition[]> {
     .order("edition_date", { ascending: false });
   return data ?? [];
 }
+
+export async function getEditionsWithSongs(): Promise<Edition[]> {
+  const { data } = await supabase
+    .from("editions")
+    .select("*")
+    .eq("published", true)
+    .not("song_title", "is", null)
+    .order("edition_date", { ascending: false });
+  return data ?? [];
+}

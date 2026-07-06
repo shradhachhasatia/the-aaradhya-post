@@ -1,38 +1,56 @@
 import Link from "next/link";
-import { masthead } from "./content";
-import { getLatestEdition, getIssueNumber } from "../lib/supabase";
-import { Masthead } from "../components/editorial/Masthead";
-import { IssueSheet } from "../components/editorial/IssueSheet";
-import { ArchiveMark } from "../components/editorial/Icons";
+import { cover } from "./content";
+import { getLatestEdition } from "../lib/supabase";
+import { SiteNav } from "../components/editorial/SiteNav";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const edition = await getLatestEdition();
+  const readHref = edition ? `/post/${edition.edition_date}` : "/archive";
 
-  if (!edition) {
-    return (
-      <main className="paper">
-        <article className="sheet">
-          <nav className="topnav">
-            <span />
-            <Link href="/archive" className="topnav-link">
-              <ArchiveMark className="topnav-icon" />
-              Archive
+  return (
+    <main className="paper">
+      <article className="sheet">
+        <SiteNav active="cover" />
+
+        <div className="cover-meta">
+          <span>
+            {cover.estYear} &middot; {cover.circulation}
+          </span>
+          <span>{cover.parAvion}</span>
+        </div>
+
+        <section className="cover-hero">
+          <p className="cover-kicker">The</p>
+          <h1 className="cover-logo">
+            <span className="circled">{cover.logoWord}</span>
+            <br />
+            {cover.logoRest}
+          </h1>
+          <p className="cover-tagline">{cover.tagline}</p>
+          <p className="cover-description">{cover.description}</p>
+
+          <div className="cover-actions">
+            <Link href={readHref} className="cover-cta">
+              {cover.ctaLabel} &rarr;
             </Link>
-          </nav>
-          <Masthead
-            motto={masthead.motto}
-            metaLeft="The presses are warming up"
-            metaRight="No. 01"
-          />
-          <p className="cover-waiting">First edition drops soon.</p>
-        </article>
-      </main>
-    );
-  }
+            <Link href="/letter" className="cover-skip">
+              {cover.skipLabel}
+            </Link>
+          </div>
+        </section>
 
-  const issueNumber = await getIssueNumber(edition.edition_date);
+        <div className="cover-divider" />
+        <p className="cover-inside">{cover.insideLine}</p>
+        <p className="cover-printed">{cover.printedLine}</p>
 
-  return <IssueSheet edition={edition} issueNumber={issueNumber} />;
+        <footer className="paper-footer">
+          <span className="heart">&hearts;</span>
+          <p>The Aaradhya Post &middot; Circulation: One &middot; Par Avion</p>
+          <p>Published every Friday with love by the editor.</p>
+        </footer>
+      </article>
+    </main>
+  );
 }

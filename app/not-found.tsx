@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { SiteNav } from "../components/editorial/SiteNav";
 
 export default function NotFound() {
   return (
     <main className="paper">
       <article className="sheet">
+        <SiteNav active="cover" />
         <header className="masthead">
           <h1 className="title">Page Not Found</h1>
         </header>

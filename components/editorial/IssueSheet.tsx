@@ -2,7 +2,8 @@ import Link from "next/link";
 import { masthead } from "../../app/content";
 import type { Edition } from "../../lib/supabase";
 import { Masthead } from "./Masthead";
-import { StampSeal, ArchiveMark, SunLine, HeartLine, BookLine, StarLine } from "./Icons";
+import { SiteNav } from "./SiteNav";
+import { StampSeal, SunLine, HeartLine, BookLine, StarLine } from "./Icons";
 
 function iconFor(title: string) {
   const t = title.toLowerCase();
@@ -31,19 +32,13 @@ export function IssueSheet({ edition, issueNumber, isArchived }: Props) {
   return (
     <main className="paper">
       <article className="sheet">
-        <nav className="topnav">
-          {isArchived ? (
-            <Link href="/" className="topnav-link">
-              &larr; Latest Issue
-            </Link>
-          ) : (
-            <span />
-          )}
-          <Link href="/archive" className="topnav-link">
-            <ArchiveMark className="topnav-icon" />
-            Archive
+        <SiteNav active="archive" />
+
+        {isArchived && (
+          <Link href="/" className="topnav-link issue-back">
+            &larr; Latest Issue
           </Link>
-        </nav>
+        )}
 
         <Masthead
           motto={masthead.motto}
