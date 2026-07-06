@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cover } from "./content";
 import { getLatestEdition } from "../lib/supabase";
 import { SiteNav } from "../components/editorial/SiteNav";
+import { HandCircle } from "../components/editorial/HandCircle";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,10 @@ export default async function Home() {
         <section className="cover-hero">
           <p className="cover-kicker">The</p>
           <h1 className="cover-logo">
-            <span className="circled">{cover.logoWord}</span>
+            <span className="circled">
+              {cover.logoWord}
+              <HandCircle className="circle-mark circle-mark-logo" />
+            </span>
             <br />
             {cover.logoRest}
           </h1>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, Caveat } from "next/font/google";
+import { Fraunces, Inter, Caveat, Playfair_Display } from "next/font/google";
 import { masthead } from "./content";
 import "./globals.css";
 
@@ -22,6 +22,13 @@ const hand = Caveat({
   variable: "--font-hand",
 });
 
+const display = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+});
+
 export const metadata: Metadata = {
   title: masthead.title,
   description: masthead.motto,
@@ -34,7 +41,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${serif.variable} ${sans.variable} ${hand.variable}`}>{children}</body>
+      <body className={`${serif.variable} ${sans.variable} ${hand.variable} ${display.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
