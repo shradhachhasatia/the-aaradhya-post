@@ -44,7 +44,7 @@ export default async function LetterPage() {
               )}
             </div>
           ) : (
-            <p className="archive-empty">No letter has been written yet — check back soon.</p>
+            <p className="archive-empty">No letter has been written yet. Check back soon.</p>
           )}
         </section>
 

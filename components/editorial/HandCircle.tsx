@@ -1,7 +1,7 @@
 type Props = { className?: string };
 
 /**
- * A hand-drawn circling mark — an imperfect loop that overshoots its own
+ * A hand-drawn circling mark: an imperfect loop that overshoots its own
  * start, like a pen circling a word twice and lifting off mid-stroke.
  */
 export function HandCircle({ className }: Props) {

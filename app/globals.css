@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   THE AARADHYA POST — warm scrapbook paper.
+   THE AARADHYA POST: warm scrapbook paper.
    Cream paper background, ink black text, a single hand-drawn red-pen
    accent used on marks, underlines, and the active nav tab.
    ───────────────────────────────────────────────────────────────────────── */
@@ -57,7 +57,6 @@ body {
 .column-title,
 .coupon-label,
 .song-label,
-.editor-note-label,
 .masthead-eyebrow,
 .topnav-count,
 .archive-card-meta,
@@ -342,7 +341,6 @@ body {
 }
 
 /* ── Section rhythm ────────────────────────────────────────────────────── */
-.editor-note,
 .lead,
 .columns,
 .pull-quote,
@@ -350,31 +348,6 @@ body {
 .song,
 .coupon {
   margin-top: clamp(48px, 9vw, 80px);
-}
-
-/* ── Editor's note ─────────────────────────────────────────────────────── */
-.editor-note {
-  text-align: center;
-  max-width: 34rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: clamp(28px, 6vw, 40px) 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.editor-note-label {
-  margin-bottom: 16px;
-}
-
-.editor-note-body {
-  font-family: var(--font-serif), Georgia, serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(1.15rem, 3vw, 1.4rem);
-  line-height: 1.5;
-  color: var(--ink);
-  white-space: pre-wrap;
 }
 
 /* ── Lead story ────────────────────────────────────────────────────────── */
@@ -470,6 +443,7 @@ body {
   font-size: 0.94rem;
   line-height: 1.65;
   color: var(--body);
+  white-space: pre-wrap;
 }
 
 /* ── Pull quote ────────────────────────────────────────────────────────── */

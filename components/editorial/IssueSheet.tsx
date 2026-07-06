@@ -46,14 +46,6 @@ export function IssueSheet({ edition, issueNumber, isArchived }: Props) {
           metaRight={`No. ${String(issueNumber).padStart(2, "0")}`}
         />
 
-        {edition.editor_note && (
-          <section className="editor-note">
-            <span className="editor-note-tape" aria-hidden="true" />
-            <p className="editor-note-label">From The Editor&rsquo;s Desk</p>
-            <p className="editor-note-body">{edition.editor_note}</p>
-          </section>
-        )}
-
         {/* Lead story */}
         <section className="lead">
           <p className="kicker">{edition.kicker}</p>

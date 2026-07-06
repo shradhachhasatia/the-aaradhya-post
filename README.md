@@ -3,21 +3,22 @@
 A personalized newspaper-style newsletter website, built with Next.js and
 Supabase.
 
-- `/` — the magazine-cover entry page, showing an index of the latest issue
-  (lead story, columns, top headlines, song of the week).
-- `/post/[date]` — a single edition, e.g. `/post/2026-07-03`.
-- `/archive` — every past edition, ever.
+- `/`: the cover page (masthead, latest issue link, letter link).
+- `/archive`: every past edition, ever.
+- `/letter`: the latest issue's editor's note, as its own page.
+- `/songs`: the song of the week plus the back catalog of songs.
+- `/post/[date]`: a single edition, e.g. `/post/2026-07-03`.
 
 ## How new editions get published
 
-Every newsletter is a row in the `editions` table in Supabase — nothing is
+Every newsletter is a row in the `editions` table in Supabase; nothing is
 hardcoded in the repo, so publishing a new week doesn't require touching code
 or redeploying. Add a row (edition date, headline, story, columns, reasons,
 quote, coupon, and optionally a song of the week with cover art + link), set
 `published = true`, and it appears on the site immediately.
 
 Only `app/content.ts` still lives in the repo, and it just holds the site's
-permanent identity (title, motto, gate-page copy) — things that don't change
+permanent identity (title, motto, cover copy), things that don't change
 week to week.
 
 ## Run it locally
