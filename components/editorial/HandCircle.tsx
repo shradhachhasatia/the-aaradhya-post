@@ -16,7 +16,7 @@ export function HandCircle({ className }: Props) {
       <path
         d="M106,7 C48,4 11,28 13,51 C15,76 49,94 105,93 C160,92 191,74 188,50 C185,27 151,8 90,8 C66,8 51,12 40,19"
         stroke="currentColor"
-        strokeWidth="7"
+        strokeWidth="5.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
