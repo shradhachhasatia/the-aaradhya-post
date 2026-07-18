@@ -4,7 +4,7 @@ import { getLatestEdition } from "../lib/supabase";
 import { SiteNav } from "../components/editorial/SiteNav";
 import { HandCircle } from "../components/editorial/HandCircle";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function Home() {
   const edition = await getLatestEdition();

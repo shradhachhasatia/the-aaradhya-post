@@ -692,6 +692,25 @@ body {
   padding: 40px 0;
 }
 
+.loading-line {
+  text-align: center;
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  color: var(--soft);
+  padding: clamp(60px, 14vw, 100px) 0;
+  animation: loading-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .archive-card {
   display: block;
   text-decoration: none;

@@ -2,7 +2,7 @@ import { getEditionsWithSongs } from "../../lib/supabase";
 import { SiteNav } from "../../components/editorial/SiteNav";
 import { songs } from "../content";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function SongsPage() {
   const editions = await getEditionsWithSongs();

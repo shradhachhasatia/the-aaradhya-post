@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllEditions } from "../../lib/supabase";
 import { SiteNav } from "../../components/editorial/SiteNav";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 function formatDate(dateStr: string) {
   return new Date(`${dateStr}T00:00:00`).toLocaleDateString("en-US", {

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getEditionByDate, getIssueNumber } from "../../../lib/supabase";
 import { IssueSheet } from "../../../components/editorial/IssueSheet";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function EditionPage({
   params,

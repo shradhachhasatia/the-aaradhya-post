@@ -2,7 +2,7 @@ import { getLatestEdition, getIssueNumber } from "../../lib/supabase";
 import { SiteNav } from "../../components/editorial/SiteNav";
 import { letter } from "../content";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 function formatDate(dateStr: string) {
   return new Date(`${dateStr}T00:00:00`).toLocaleDateString("en-US", {
