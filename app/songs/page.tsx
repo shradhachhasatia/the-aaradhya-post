@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getEditionsWithSongs } from "../../lib/supabase";
 import { SiteNav } from "../../components/editorial/SiteNav";
 import { songs } from "../content";
@@ -42,6 +43,11 @@ export default async function SongsPage() {
                 >
                   Press Play &rarr;
                 </a>
+              )}
+              {current.song_title?.trim().toLowerCase() === "love i you" && (
+                <Link href="/songs/love-i-you" className="song-link">
+                  Read The Insert &rarr;
+                </Link>
               )}
             </div>
           </section>
